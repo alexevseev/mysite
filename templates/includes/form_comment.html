@@ -1,0 +1,20 @@
+{% csrf_token %}            
+<div class="auth-field{% if form.comment.errors %} form-error{% endif %}">
+    <label for="id_comment">Ваш комментарий:</label>{{ form.comment }}</div>
+{% if not user.is_authenticated %}
+    <div class="auth_prompt">
+      * <a id="signup_small" href="{% url signin_page_url %}">Зарегистриуйтесь</a> или <a id="login_small" href="{% url login_page_url %}">войдите</a> чтобы не вводить следующие поля. Это займет не более 15 секунд!
+    </div>
+    <div class="person auth-field{% if form.name.errors %} form-error{% endif %}">
+        <label for="id_name">Ваше имя:</label>{{ form.name }}</div>
+    <div class="person auth-field{% if form.email.errors %} form-error{% endif %}" style="height:45px;">
+        <label for="id_email">Ваш email: (не будет опубликован)</label>{{ form.email }}</div>
+{% endif %}
+{{ form.security_hash }}
+{{ form.timestamp }}
+{{ form.object_pk }}
+{{ form.content_type }}
+<input type="hidden" name="next" value="{{project.get_absolute_url}}" />
+<div class="submit_btn">
+<input type="submit" value="Оставить комментарий &raquo" name="submit" class="submit-post" />
+</div>

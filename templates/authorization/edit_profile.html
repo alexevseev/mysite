@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block css-style %}
+<link rel="stylesheet" type="text/css" href="/media/css/forms.css" media="screen,projection" />
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="/media/js/jquery.authorization.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        css = {        
+          logoutURL: "{% url logout_page_url %}",
+          editProfileURL: "{% url edit_profile_url %}",
+          messageSuccess: "Ваши данные сохранены"
+        }
+        Edit_form = $('#edit_form');
+        Edit_form.validate('{% url profile_validate_url %}', {fields: ['username'], dom: $('#id_username'), event: 'change'}, {});
+        Edit_form.validate('{% url profile_validate_url %}', {fields: ['email'], dom: $('#id_email'), event: 'change'}, {});
+        Edit_form.validate('{% url profile_validate_url %}', {fields: ['username', 'password1', 'password2', 'email'], dataSource:'edit_profile'}, css);
+        Edit_form.pwd_validate(css);
+        $("#id_username").focus();
+        $(".user_messages").remove();
+    });
+    </script>
+{% endblock %}
+
+{% block title %}Редактировать данные{% endblock %}
+{% block page_title %}Редактировать личные данные{% endblock %}
+{% block content %}  
+    {% if messages %}
+        <div class="user_messages"><ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        </div>
+    {% endif %}
+    {% include "includes/form_errors.html" %}
+    <form class="auth_form" id="edit_form" action="." method="post">     
+        {% csrf_token %}
+        <div class="{% if form.username.errors %}form-error {% endif %}auth-field">{{ form.username.label_tag }}{{ form.username }}</div>                            
+        <div class="{% if form.email.errors %}form-error {% endif %}auth-field">{{ form.email.label_tag }}{{ form.email }}</div>                            
+        <div class="{% if form.password.errors %}form-error {% endif %}auth-field"> {{ form.password.label_tag }}{{ form.password }}</div>                            
+        <div class="{% if form.password2.errors %}form-error {% endif %}auth-field">{{ form.password2.label_tag }}{{ form.password2 }}</div>                            
+        <div class="{% if form.first_name.errors %}form-error {% endif %}auth-field">{{ form.first_name.label_tag }}{{ form.first_name }}</div>                            
+        <div class="{% if form.last_name.errors %}form-error {% endif %}auth-field">{{ form.last_name.label_tag }}{{ form.last_name }}</div>                                            
+        <div class="submit_btn"><input type="submit" id="btSignin" value="Сохранить данные &raquo" /></div>
+    </form>
+{% endblock %}

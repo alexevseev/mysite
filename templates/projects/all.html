@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load project_templatetags %}
+
+{% block css-style %}
+<link rel="stylesheet" type="text/css" href="/media/css/projects.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="/media/css/forms.css" media="screen,projection" />
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="/media/js/tags.js"  charset="utf-8"></script>
+{% endblock %}
+
+{% block title %}Алексей Евсеев. Проекты{% endblock %}
+{% block page_title %}Проекты{% endblock %}
+{% block content %}    
+    {% load comments %}    
+    <div id="Project-list">
+        {% if projects|length == 0 %}
+          Проектов с такими тегами нет
+        {% else %}
+          {% for project in projects %}    
+              <div class="project-item">
+                  <div class="timetag">
+                      <div class="time">{{project.updated|date:"Y-m-d"}}</div>
+                      {% for project_tag in project.tags.all %}
+                          {% if checked|getDictItem:project_tag.name %}
+                              <div class="tag-list-wrap"><div class="tag checked">{{ project_tag.name }}</div></div>
+                          {% else %}
+                              <div class="tag-list-wrap"><div class="tag">{{ project_tag.name }}</div></div>
+                          {% endif %}
+                      {% endfor %}
+                  </div>
+                  <div class="titlebody">
+                      <a href="{{ project.get_absolute_url }}" title="Посмотреть {{project.title}}">{{project.title}}</a>
+                  </div>
+                  <div class="descr">{{project.description|truncatewords:max_description_words}}</div>
+              
+              </div>
+          {% endfor %}        
+        {% endif %}
+    </div>
+    <div id="Right_menu">
+        <div id="Tag_title">Теги</div>
+        <form id="Tag_form" method="get" action="{% url projects_url %}"> 
+            <ul>
+            {% for tag in tags %}
+                {% if checked|getDictItem:tag.name %}
+                    <li class="tag-filter-wrap"><input type="checkbox" checked name="{{ tag.name }}"/><label class="tag checked" for="{{ tag.name }}">{{ tag.name }}</label></li>  
+                {% else %}
+                    <li class="tag-filter-wrap"><input type="checkbox" name="{{ tag.name }}"/><label class="tag" for="{{ tag.name }}">{{ tag.name }}</label></li>  
+                {% endif %}
+            {% endfor %}  
+            </ul>
+            <input type="submit" value="Фильтровать теги" /> 
+        </form>                   
+    </div>  
+
+{% endblock %}

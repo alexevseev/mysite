@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Alexey Evseev home site" />
+    <meta name="keywords" content="Evseev home programming python java job work" />
+    <meta name="author" content="Stalk" />
+    <link rel="shortcut icon" href="/media/img/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/media/css/base.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="/media/css/searchlight.css" media="screen,projection" />
+    {% block css-style %}{% endblock %}
+    <script type="text/javascript" src="/media/js/jquery-1.5.2.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/media/js/main.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/media/js/jquery.searchlight.js"  charset="utf-8"></script>    
+    {% block scripts %}{% endblock %}
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $('#ajax_srch_fld').searchlight("{% url ajax_search_url %}"); 
+        });
+    </script>
+    <title>{% block title %}{% endblock %}</title>    
+</head>
+
+<body>
+<div id="Wrapper">
+    <div id="Header">
+        <!--  ############## up menu ############## -->
+        <div id="Up_menu">
+            <ul>
+                <li><a href="{% url root_url %}" title="">Главная</a></li>
+                {% if user.is_authenticated %}
+                    <li id="logout"><a href="{% url logout_page_url %}" title="">Выйти</a></li>
+                    <li id="edit_profile"><a href="{% url edit_profile_url %}" title="">Редактировать профиль</a></li>
+                {% else %}
+                    <li id="login"><a href="{% url login_page_url %}" title="">Войти</a></li>
+                    <li id="signup"><a href="{% url signin_page_url %}" title="">Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- ############## search ############## -->
+        <div id="Search">
+            <form method="get" action="{% url haystack_search %}">
+                <label for="id_q"></label>
+                <input id="ajax_srch_fld" type="text" title="Поиск" value="Поиск" name="q" id="id_q" autocomplete=off />
+            </form>
+        </div>
+    </div>
+    <div id="Main">
+        <!-- ############## main menu ############## -->
+        <div id="Left_menu">
+            <ul>
+                <li><a href="{% url projects_url %}" title="">Проекты</a></li>                
+                <li><a href="{% url services_url %}" title="">Сервисы</a></li>
+                <li><a href="{% url about_url %}" title="">Об авторе</a></li>
+            </ul>
+        </div>
+        <div id="Page_title">{% block page_title %}{% endblock %}</div>
+        <!-- ############## content ############## -->        
+        <div id="Content">
+            {% block content %}{% endblock %}        
+        </div>
+        <!-- ############## tag menu ############## -->
+        {% block right_menu %}{% endblock %}
+        <div id="Push"></div>
+    </div>
+</div>
+<!-- ############## footer ############## -->
+<div id="Footer">
+    hello hello hello
+</div>
+
+</body>
+</html>

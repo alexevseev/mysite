@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block css-style %}
+<link rel="stylesheet" type="text/css" href="/media/css/forms.css" media="screen,projection" />
+{% endblock %}
+{% block title %}Алексей Евсеев, информация{% endblock %}
+{% block page_title %}Об авторе{% endblock %}
+{% block content %}
+<div id="About">
+  <div id="Myfoto"><img src="/media/img/myfoto.jpg"/></div>
+  <div id="About_content">
+  Алексей Евсеев, мне 26 лет.<br/>
+  Программист C, Python (Django), Javascript (Jquery).<br/>
+  Текущее место работы: <a href="http://sukhoi.org/" target="_blank">ОАО ОКБ Сухого</a>, инженер-программист С.<br/><br/>
+  <div>vkontakte: </div><a href="http://vkontakte.ru/id232647" target="_blank">http://vkontakte.ru/id232647</a><br/>
+  <div>delicious: </div><a href="http://www.delicious.com/vapupk" target="_blank">http://www.delicious.com/vapupk</a><br/>
+  <div>e-mail: </div><a href="mailto:alexevseev@gmail.com">alexevseev@gmail.com</a>
+  </div>
+</div>
+<div class='form-title'>Отправить сообщение</div>
+{% include "includes/form_errors.html" %}
+<form action="" method="post">
+    {% csrf_token %}    
+    {% if not user.is_authenticated %}
+        <div class="{% if form.name.errors %}form-error {% endif %}auth-field">{{ form.name.label_tag }}{{ form.name }}</div>                            
+        <div class="{% if form.email.errors %}form-error {% endif %}auth-field">{{ form.email.label_tag }}{{ form.email }}</div> 
+    {% endif %}
+    <div class="{% if form.message.errors %}form-error {% endif %}auth-field">{{ form.message.label_tag }}{{ form.message }}</div>         
+    <div class="submit_btn"><input type="submit" value="Отправить сообщение &raquo" /></div>
+</form>
+{% endblock %}

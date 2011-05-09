@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block css-style %}
+<link rel="stylesheet" type="text/css" href="/media/css/projects.css" media="screen,projection" />
+{% endblock %}
+{% block title %}Алексей Евсеев. Сервисы{% endblock %}
+{% block page_title %}Сервисы{% endblock %}
+{% block content %}    
+{% if services|length == 0 %}
+  Пока сервисов нет.
+{% else %}     
+  {% for service in services %}
+    <div class="service">
+      <div class="srvc_ttl"><a href="{{service.get_absolute_url}}">{{service.title}}</a></div>
+      <div class="srvc_field">{{service.short_description}}</div>
+      <div class="srvc_field"><a href="{{service.full_description_url}}">Подробнее...</a></div>
+    </div>
+  {% endfor %} 
+{% endif %}
+{% endblock %}

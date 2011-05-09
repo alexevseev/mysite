@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block css-style %}
+<link rel="stylesheet" type="text/css" href="/media/css/projects.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="/media/css/forms.css" media="screen,projection" />
+{% endblock %}
+
+{% if not user.is_authenticated %}
+  {% block scripts %}
+      <script type="text/javascript" src="/media/js/jquery.authorization.js" charset="utf-8"></script>
+      <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+          css = {
+            logoutURL: "{% url logout_page_url %}",
+            editProfileURL: "{% url edit_profile_url %}",
+            validateURL: "{% url signup_form_validate_url %}",
+            formPrefix: "{{signup_prefix}}",
+            formId: "signup_form",
+            hideElemsOnSuccess: $(".person").add(".auth_prompt"),
+            messageSuccess: "Спасибо, вы зарегистрированы"            
+          }          
+          $("#signup_small").get_form_onclick("{% url get_signup_form_url %}", {dataSource: 'signup'}, css);
+          
+          css.messageSuccess = "Здраствуйте, %username%!";
+          css.formId = "login_form";
+          css.formPrefix = "{{login_prefix}}";
+          css.validateURL = "{% url login_validate_url %}";
+          css.submitValue = "Войти &raquo";
+          $("#login_small").get_form_onclick("{% url get_login_form_url %}", {dataSource: 'login'}, css);
+        });
+      </script>
+  {% endblock %}
+{% endif %}
+
+{% block title %}{{project.title}}{% endblock %}
+{% block page_title %} {{project.title}} {% endblock %}
+
+{% block content %}
+<div class="project">
+    <div><span class="stb">Дата создания:</span> {{project.created|date:"Y-m-d"}}</div>
+    <div><span class="stb">Дата изменения:</span> {{project.updated|date:"Y-m-d"}}</div>    
+    <div class="tags"><span class="stb">Теги:</span>
+        {% for project_tag in project.tags.all %}
+            <span class="tag">{{ project_tag.name }}</span>
+        {% endfor %}
+    </div>    
+    <div id="PrDscrMrk"><span class="stb">Описание:</span> </div>
+    <div class="descr_one">{{project.description}}</div>
+    <div><span class="stb">Исходный код:</span> </div>
+    <div><span class="stb">Рабочий проект:</span> </div>
+    <div id="Comment_header">Комментарии:</div>
+        {% load comments %}
+        {% get_comment_list for project as comment_list %}
+        {% for comment in comment_list reversed %}
+            <div class="comment">
+                <div class="com_property">                    
+                    <div>{{comment.submit_date|date:"Y-m-d"}}</div>
+                    <div>{{comment.submit_date|date:"H:i"}}</div>
+                </div>
+                <div class="com_name">{{comment.user_name}}</div>
+                <div class="com_body">{{comment.comment}}</div>
+            </div>        
+        {% endfor %}
+            {% get_comment_form for project as form %}
+    <form class="form" action="{% comment_form_target %}" method="post">
+        {% csrf_token %}  
+        {% include "includes/form_comment.html" %}
+    </form>
+</div>
+{% endblock %}

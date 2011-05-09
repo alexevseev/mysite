@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Поиск{% endblock %}
+{% block page_title %}Поиск по сайту{% endblock %}
+
+{% block content %}
+
+<form id="Search_form" method="get" action="{% url haystack_search %}">        
+    <label>{{ form.q }}</label>
+    <input type="submit" value="Искать">
+</form>
+{% if query %}
+    <div id="rslt_ttl">Результаты:</div>
+    {% for result in page.object_list %}
+        <div class="rslt_item"><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></div>
+    {% empty %}
+        <div class="rslt_item">По вашему запросу ничего не найдено</div>
+    {% endfor %}
+{% else %}
+    <div>Ваш запрос не дал результатов</div>
+    <div>Предложения:</div>
+    <div>
+        <ul>
+            <li>Убедитесь, что все слова написаны верно</li>
+            <li>Попробуйте другие слова в качестве поискового критерия</li>
+            <li>Попробуйте более общие слова.</li>
+        </ul>
+    </div>
+{% endif %}
+
+{% endblock %}

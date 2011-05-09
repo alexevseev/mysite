@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block css-style %}
+<link rel="stylesheet" type="text/css" href="/media/css/forms.css" media="screen,projection" />
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="/media/js/jquery.authorization.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          css = {
+            logoutURL: "{% url logout_page_url %}",
+            editProfileURL: "{% url edit_profile_url %}",
+            messageSuccess: "Здраствуйте, %username%!"
+          }
+        $('#login_form').validate('{% url login_validate_url %}', {fields: ['username', 'password'], dataSource:'login'}, css);
+        $("#id_username").focus();
+        });
+    </script>
+{% endblock %}
+
+{% block title %}Вход{% endblock %}
+{% block page_title %}Вход{% endblock %}
+{% block content %}
+    {% include "includes/form_errors.html" %}
+    <form class="auth_form" id="login_form" action="{% url login_result_url %}" method="post" >
+        {% csrf_token %}
+        <div class="auth-field">{{ form.username.label_tag }}{{ form.username }}</div>
+        <div class="auth-field">{{ form.password.label_tag }}{{ form.password }}</div>
+        <div class="submit_btn"><input type="submit" id="btSignin" value="Войти &raquo" /></div>
+    </form>
+{% endblock %}

@@ -1,0 +1,9 @@
+# requirements.txt is a pip requirements file which describes the distributions
+# required by your project to run.
+
+# Put project-specific requirements here.
+# See http://pip-installer.org/requirement-format.html for more information.
+
+django>=1.2
+django-haystack==1.0.1-final
+Whoosh==1.0.0b5

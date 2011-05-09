@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block css-style %}
+<link rel="stylesheet" type="text/css" href="/media/css/forms.css" media="screen,projection" />
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="/media/js/jquery.authorization.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          css = {
+            logoutURL: "{% url logout_page_url %}",
+            editProfileURL: "{% url edit_profile_url %}",
+            messageSuccess: "Спасибо, вы зарегистрированы"
+          }
+        Signup_form = $('#signup_form');
+        Signup_form.validate('{% url signup_form_validate_url %}', {fields: ['username'], dom: $('#id_username'), event: 'change'}, css);
+        Signup_form.validate('{% url signup_form_validate_url %}', {fields: ['email'], dom: $('#id_email'), event: 'change'}, css);
+        Signup_form.validate('{% url signup_form_validate_url %}', {fields: ['username', 'password1', 'password2', 'email']}, css);
+        Signup_form.pwd_validate(css);
+        $("#id_username").focus();
+    });
+    </script>
+{% endblock %}
+
+{% block title %}Регистрация{% endblock %}
+{% block page_title %}Регистрация{% endblock %}
+{% block content %}
+    {% include "includes/form_errors.html" %}
+    <form class="auth_form" id="signup_form" action="{% url signin_result_url %}" method="post" >
+        {% csrf_token %}    
+        <div class="{% if form.username.errors %}form-error {% endif %}auth-field">{{ form.username.label_tag }}{{ form.username }}</div>
+        <div class="{% if form.password1.errors %}form-error {% endif %}auth-field">{{ form.password1.label_tag }}{{ form.password1 }}</div>            
+        <div class="{% if form.password2.errors %}form-error {% endif %}auth-field">{{ form.password2.label_tag }}{{ form.password2 }}</div>            
+        <div class="{% if form.email.errors %}form-error {% endif %}auth-field">{{ form.email.label_tag }}{{ form.email }}</div>        
+        <div class="submit_btn"><input type="submit" id="btSignin" value="Зарегистрироваться &raquo" /></div>
+    </form>    
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block css-style %}
+<link rel="stylesheet" type="text/css" href="/media/css/projects.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="/media/css/forms.css" media="screen,projection" />
+{% endblock %}
+{% block title %}Добавление комментария{% endblock %}
+{% load comments %}
+{% block content %}
+<div>
+{% include "includes/form_errors.html" %}
+    <div class="project">
+        <div>
+        {% load comments %}       
+        <form action="{% comment_form_target %}" method="post">
+            {% include "includes/form_comment.html" %}
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

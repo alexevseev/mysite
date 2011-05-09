@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block css-style %}
+<link rel="stylesheet" type="text/css" href="/media/css/projects.css" media="screen,projection" />
+{% endblock %}
+{% block title %}Алексей Евсеев. Программист{% endblock %}
+{% block content %}
+
+<div id="HomeInfo">
+Здравствуйте!<br/>
+На этом сайте можно ознакомиться с моими проектами.<br/>
+Последние добавления представлены ниже.<br/>
+</div>
+
+<div class="project-item-small" style="border-right: 1px solid black;margin-right:10px">
+  <div class="article-head">Последний проект:</div>
+  {% if project %}
+    <div class="time-small">{{project.updated|date:"Y-m-d"}}</div>
+    <div class="titlebody">
+        <a href="{{ project.get_absolute_url }}" title="Посмотреть {{project.title}}">{{project.title}}</a>
+    </div>
+    <div class="descr-small">{{project.description|truncatewords:max_description_words}}</div>
+    
+    <div class="tags-wrap">
+        <span class="" style="margin-right:5px;">Теги: </span>
+        {% for project_tag in project.tags.all %}
+            <span class="tag">{{ project_tag.name }}</span>
+        {% endfor %}
+    </div>      
+  {% else %}
+    <div>Проектов пока не добавлено</div>
+  {% endif %}
+</div>
+
+<div class="project-item-small">
+<div class="article-head">Последний сервис:</div>
+{% if service %}
+  <div class="time-small">{{service.updated|date:"Y-m-d"}}</div>
+  <div class="titlebody">
+      <a href="{{ service.get_absolute_url }}" title="запустить {{service.title}}">{{service.title}}</a>
+  </div>
+  <div class="descr-small">{{service.short_description|truncatewords:max_description_words}}</div>
+  <div class="srvc_field-small"><a href="{{service.full_description_url}}">Подробнее...</a></div>
+{% else %}
+  <div>Сервисов пока не добавлено</div>
+{% endif %}
+</div>
+
+{% endblock %}

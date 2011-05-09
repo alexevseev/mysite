@@ -1,0 +1,4 @@
+External sources (modified), used in project:
+
+django-ajax-validation (https://github.com/alex/django-ajax-validation)
+jQuery Search Light Plugin (http://ryanwilliams.org/2009/jul/28/search-light-jquery-plugin/)
