@@ -12,7 +12,7 @@
   css_default_settings = {
     /* common used */
     ajaxWaitPictureClass: "ajax_loader",
-    ajaxWaitPictureSource: "/media/img/ajax-loader.gif",
+    ajaxWaitPictureSource: "/site_media/img/ajax-loader.gif",
     inputErrorClass:"js_input-error",
     inputValidClass:"jq_input-valid",
     loginId:"login",
@@ -36,8 +36,8 @@
 
     /* get_form only used */
     validateURL: "",
-    ajaxWaitFormReceivedPictureSource: "/media/img/ajax-loader-big.gif",
-    closePictureSource: "/media/img/close.png",
+    ajaxWaitFormReceivedPictureSource: "/site_media/img/ajax-loader-big.gif",
+    closePictureSource: "/site_media/img/close.png",
     backgroundClass: "ajax_background",
     formId: "signup_form",
     formClass: "auth_from_small",

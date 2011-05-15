@@ -31,8 +31,6 @@ def ajax_search(request):
             return HttpResponse(simplejson.dumps(out_data), mimetype="application/json")
 
 ## VALIDATION ##
-            
-import time
 
 def processErrors(request, form):
     if request.POST.getlist('fields'):
@@ -73,7 +71,6 @@ def validate(request, *args, **kwargs):
     else:        
         data = processErrors(request, form)
     json_serializer = LazyEncoder()
-    time.sleep(1)
     return HttpResponse(json_serializer.encode(data), mimetype='application/json')
 validate = require_POST(validate)
 
@@ -99,7 +96,6 @@ def validate_profile(request, *args, **kwargs):
         }
         
     json_serializer = LazyEncoder()
-    time.sleep(1)
     return HttpResponse(json_serializer.encode(data), mimetype='application/json')
 validate_profile = require_POST(validate_profile)
 
@@ -124,7 +120,6 @@ def validate_login(request):
             'errors': final_errors,
         }
     json_serializer = LazyEncoder()
-    time.sleep(1)
     return HttpResponse(json_serializer.encode(data), mimetype='application/json')
 validate_login = require_POST(validate_login)
 
@@ -140,7 +135,6 @@ def get_signup_form(request):
     
     data={'form': form,}
     json_serializer = LazyEncoder()
-    time.sleep(1)
     return HttpResponse(json_serializer.encode(data), mimetype='application/json')
     
 def get_login_form(request):
@@ -150,5 +144,4 @@ def get_login_form(request):
     
     data={'form': form,}
     json_serializer = LazyEncoder()
-    time.sleep(1)
     return HttpResponse(json_serializer.encode(data), mimetype='application/json')

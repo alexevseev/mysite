@@ -1,10 +1,9 @@
 table.searchlight-results {
     background: #FFF;
     border-collapse: collapse;
-    font-size: 12pt;
+    font-size: 85%;
     font-weight: normal;
     width: 100%;
-    /*margin-bottom:20px;*/
 }
 div.searchlight-results-wrapper {
     color: #000;
@@ -28,7 +27,7 @@ table.searchlight-results .searchlight-result-text {
 }
 
 table.searchlight-results span {
-    font-size: 12pt;
+    font-size: 100%;
     font-weight: bold;
 }
 
@@ -66,7 +65,7 @@ table.searchlight-results tr.searchlight-spacer-row td {
 width:200px;
 }
 #rslt_ttl {
-font-size:140%;
+font-size:100%;
 margin:20px 0px 10px 0px;
 }
 .rslt_item{

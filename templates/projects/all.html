@@ -2,12 +2,12 @@
 {% load project_templatetags %}
 
 {% block css-style %}
-<link rel="stylesheet" type="text/css" href="/media/css/projects.css" media="screen,projection" />
-<link rel="stylesheet" type="text/css" href="/media/css/forms.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="/site_media/css/projects.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="/site_media/css/forms.css" media="screen,projection" />
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript" src="/media/js/tags.js"  charset="utf-8"></script>
+<script type="text/javascript" src="/site_media/js/tags.js"  charset="utf-8"></script>
 {% endblock %}
 
 {% block title %}Алексей Евсеев. Проекты{% endblock %}
@@ -45,9 +45,9 @@
             <ul>
             {% for tag in tags %}
                 {% if checked|getDictItem:tag.name %}
-                    <li class="tag-filter-wrap"><input type="checkbox" checked name="{{ tag.name }}"/><label class="tag checked" for="{{ tag.name }}">{{ tag.name }}</label></li>  
+                    <li class="tag-filter-wrap"><input type="checkbox" checked name="{{ tag.name }}"/><label class="tag tag_choice checked" for="{{ tag.name }}">{{ tag.name }}</label></li>  
                 {% else %}
-                    <li class="tag-filter-wrap"><input type="checkbox" name="{{ tag.name }}"/><label class="tag" for="{{ tag.name }}">{{ tag.name }}</label></li>  
+                    <li class="tag-filter-wrap"><input type="checkbox" name="{{ tag.name }}"/><label class="tag tag_choice" for="{{ tag.name }}">{{ tag.name }}</label></li>  
                 {% endif %}
             {% endfor %}  
             </ul>

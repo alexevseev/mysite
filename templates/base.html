@@ -5,13 +5,13 @@
     <meta name="description" content="Alexey Evseev home site" />
     <meta name="keywords" content="Evseev home programming python java job work" />
     <meta name="author" content="Stalk" />
-    <link rel="shortcut icon" href="/media/img/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="/media/css/base.css" media="screen,projection" />
-    <link rel="stylesheet" type="text/css" href="/media/css/searchlight.css" media="screen,projection" />
+    <link rel="shortcut icon" href="/site_media/img/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/site_media/css/base.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="/site_media/css/searchlight.css" media="screen,projection" />
     {% block css-style %}{% endblock %}
-    <script type="text/javascript" src="/media/js/jquery-1.5.2.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/media/js/main.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/media/js/jquery.searchlight.js"  charset="utf-8"></script>    
+    <script type="text/javascript" src="/site_media/js/jquery-1.5.2.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/site_media/js/main.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/site_media/js/jquery.searchlight.js"  charset="utf-8"></script>    
     {% block scripts %}{% endblock %}
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {
@@ -24,10 +24,17 @@
 <body>
 <div id="Wrapper">
     <div id="Header">
+        <div id="Logo"><a href="{% url root_url %}">Алексей Евсеев. Программист.</a></div>
+        <!-- ############## search ############## -->
+        <div id="Search">
+            <form method="get" action="{% url haystack_search %}">
+                <label for="id_q"></label>
+                <input id="ajax_srch_fld" type="text" title="Поиск" value="Поиск" name="q" id="id_q" autocomplete=off />
+            </form>
+        </div>
         <!--  ############## up menu ############## -->
         <div id="Up_menu">
             <ul>
-                <li><a href="{% url root_url %}" title="">Главная</a></li>
                 {% if user.is_authenticated %}
                     <li id="logout"><a href="{% url logout_page_url %}" title="">Выйти</a></li>
                     <li id="edit_profile"><a href="{% url edit_profile_url %}" title="">Редактировать профиль</a></li>
@@ -37,15 +44,9 @@
                 {% endif %}
             </ul>
         </div>
-        <!-- ############## search ############## -->
-        <div id="Search">
-            <form method="get" action="{% url haystack_search %}">
-                <label for="id_q"></label>
-                <input id="ajax_srch_fld" type="text" title="Поиск" value="Поиск" name="q" id="id_q" autocomplete=off />
-            </form>
-        </div>
     </div>
     <div id="Main">
+        <div id="Page_title">{% block page_title %}{% endblock %}</div>
         <!-- ############## main menu ############## -->
         <div id="Left_menu">
             <ul>
@@ -54,7 +55,6 @@
                 <li><a href="{% url about_url %}" title="">Об авторе</a></li>
             </ul>
         </div>
-        <div id="Page_title">{% block page_title %}{% endblock %}</div>
         <!-- ############## content ############## -->        
         <div id="Content">
             {% block content %}{% endblock %}        
@@ -66,8 +66,12 @@
 </div>
 <!-- ############## footer ############## -->
 <div id="Footer">
-    hello hello hello
+    Сайт построен используя 
+    <a href="http://python.org" target="_blank" title="Python {{ PYTHON_VERSION }}">Python {{ PYTHON_VERSION }}</a>
+    <a href="http://www.djangoproject.com" target="_blank" title="Django {{ DJANGO_VERSION }}">Django {{ DJANGO_VERSION }}</a>
+    <a href="http://jquery.com" target="_blank" title="jQuery" class="jquery-version">jQuery</a>
 </div>
+
 
 </body>
 </html>

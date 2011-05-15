@@ -6,7 +6,7 @@
       * <a id="signup_small" href="{% url signin_page_url %}">Зарегистриуйтесь</a> или <a id="login_small" href="{% url login_page_url %}">войдите</a> чтобы не вводить следующие поля. Это займет не более 15 секунд!
     </div>
     <div class="person auth-field{% if form.name.errors %} form-error{% endif %}">
-        <label for="id_name">Ваше имя:</label>{{ form.name }}</div>
+        <label for="id_name">Ваше имя:</label>{{ form.name }}</div><div class="fpd"></div>
     <div class="person auth-field{% if form.email.errors %} form-error{% endif %}" style="height:45px;">
         <label for="id_email">Ваш email: (не будет опубликован)</label>{{ form.email }}</div>
 {% endif %}

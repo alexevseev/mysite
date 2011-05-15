@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block css-style %}
-<link rel="stylesheet" type="text/css" href="/media/css/projects.css" media="screen,projection" />
-<link rel="stylesheet" type="text/css" href="/media/css/forms.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="/site_media/css/projects.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="/site_media/css/forms.css" media="screen,projection" />
 {% endblock %}
 
 {% if not user.is_authenticated %}
   {% block scripts %}
-      <script type="text/javascript" src="/media/js/jquery.authorization.js" charset="utf-8"></script>
+      <script type="text/javascript" src="/site_media/js/jquery.authorization.js" charset="utf-8"></script>
       <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {
           css = {

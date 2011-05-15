@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 
 {% block css-style %}
-<link rel="stylesheet" type="text/css" href="/media/css/projects.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="/site_media/css/projects.css" media="screen,projection" />
 {% endblock %}
 {% block title %}Алексей Евсеев. Программист{% endblock %}
+{% block page_title %}Главная{% endblock %}
 {% block content %}
 
 <div id="HomeInfo">
 Здравствуйте!<br/>
-На этом сайте можно ознакомиться с моими проектами.<br/>
+Здесь можно ознакомиться с моими проектами.<br/>
 Последние добавления представлены ниже.<br/>
 </div>
 
@@ -16,7 +17,7 @@
   <div class="article-head">Последний проект:</div>
   {% if project %}
     <div class="time-small">{{project.updated|date:"Y-m-d"}}</div>
-    <div class="titlebody">
+    <div class="titlebody-small">
         <a href="{{ project.get_absolute_url }}" title="Посмотреть {{project.title}}">{{project.title}}</a>
     </div>
     <div class="descr-small">{{project.description|truncatewords:max_description_words}}</div>
@@ -36,7 +37,7 @@
 <div class="article-head">Последний сервис:</div>
 {% if service %}
   <div class="time-small">{{service.updated|date:"Y-m-d"}}</div>
-  <div class="titlebody">
+  <div class="titlebody-small">
       <a href="{{ service.get_absolute_url }}" title="запустить {{service.title}}">{{service.title}}</a>
   </div>
   <div class="descr-small">{{service.short_description|truncatewords:max_description_words}}</div>

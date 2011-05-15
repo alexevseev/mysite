@@ -21,6 +21,6 @@ if settings.LOCAL:
     print "LOCAL!"
     urlpatterns += patterns('',
         # This is for the CSS and static files:
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
     )
