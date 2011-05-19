@@ -20,7 +20,7 @@
     <div class="titlebody-small">
         <a href="{{ project.get_absolute_url }}" title="Посмотреть {{project.title}}">{{project.title}}</a>
     </div>
-    <div class="descr-small">{{project.description|truncatewords:max_description_words}}</div>
+    <div class="descr-small">{{project.description|safe|truncatewords:max_description_words}}</div>
     
     <div class="tags-wrap">
         <span class="" style="margin-right:5px;">Теги: </span>

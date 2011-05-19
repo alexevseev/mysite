@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.db.models import permalink
-
+    
 class ProjectTags(models.Model):
     name=models.CharField(max_length=50)    
     
@@ -13,11 +13,13 @@ class ProjectTags(models.Model):
         
 class Projects(models.Model):
     title=models.CharField(max_length=250)    
-    description = models.TextField( verbose_name =u"описание")   
+    description = models.TextField(verbose_name =u"описание")   
     slug = models.SlugField(max_length=250, default='')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     tags=models.ManyToManyField(ProjectTags, related_name="projects")
+    source_url=models.URLField(max_length=250)
+    work_url=models.URLField(max_length=250)
 
     class Meta:
         verbose_name_plural = u"мои проекты"

@@ -39,6 +39,7 @@
     ajaxWaitFormReceivedPictureSource: "/site_media/img/ajax-loader-big.gif",
     closePictureSource: "/site_media/img/close.png",
     backgroundClass: "ajax_background",
+    wideBlankElemClass: "fpd",
     formId: "signup_form",
     formClass: "auth_from_small",
     formWrapInputClass: "auth-field",
@@ -363,8 +364,10 @@
               new_form.attr("action", css.validateURL);
               new_form.attr("method", "post");
               new_form.attr("id", css.formId);
+              blank_wide_div = $("<div></div>").addClass(css.wideBlankElemClass);
               new_form.html(data.form);
               new_form.find("div").addClass(css.formWrapInputClass);
+              blank_wide_div.insertAfter(new_form.find("div"));
               new_form.append('<div class="'+css.submitClass+'"><input type="submit" id="'+css.submitId+'" value="'+css.submitValue+'" /></div>');
 
               exit_button_wrap = $('<div><img src="'+css.closePictureSource+'" /></div>').prependTo(new_form);

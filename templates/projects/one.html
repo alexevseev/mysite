@@ -45,13 +45,13 @@
         {% endfor %}
     </div>    
     <div id="PrDscrMrk"><span class="stb">Описание:</span> </div>
-    <div class="descr_one">{{project.description}}</div>
-    <div><span class="stb">Исходный код:</span> </div>
-    <div><span class="stb">Рабочий проект:</span> </div>
+    <div class="descr_one">{{project.description|safe}}</div>
+    <div><span class="stb">Исходный код:</span> <a href='{{project.source_url}}'>{{project.source_url}}</a></div>
+    <div><span class="stb">Рабочий проект:</span> <a href='{{project.work_url}}'>{{project.work_url}}</a></div>
     <div id="Comment_header">Комментарии:</div>
         {% load comments %}
         {% get_comment_list for project as comment_list %}
-        {% for comment in comment_list reversed %}
+        {% for comment in comment_list %}
             <div class="comment">
                 <div class="com_property">                    
                     <div>{{comment.submit_date|date:"Y-m-d"}}</div>

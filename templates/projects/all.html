@@ -33,7 +33,7 @@
                   <div class="titlebody">
                       <a href="{{ project.get_absolute_url }}" title="Посмотреть {{project.title}}">{{project.title}}</a>
                   </div>
-                  <div class="descr">{{project.description|truncatewords:max_description_words}}</div>
+                  <div class="descr">{{project.description|safe|truncatewords:max_description_words}}</div>
               
               </div>
           {% endfor %}        

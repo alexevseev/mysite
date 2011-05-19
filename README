@@ -2,6 +2,6 @@ INSTALLATION
 - Download the latest copy of the source
 - Create a new virtualenv
 - pip install -r requirements.txt
-- if local, rename local_settings.py.example to local_settings.py
+- rename local_settings.py.example to local_settings.py and specify settings (or leave as is)
 - python manage.py syncdb && python manage.py update_index
 - python manage.py runserver
