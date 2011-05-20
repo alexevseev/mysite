@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render_to_response
@@ -19,13 +20,13 @@ def show_about(request):
         form = ContactForm(copyRequest)
         if form.is_valid():
             recipients = [settings.ADMINS[0][1], ]            
-            name = form.cleaned_data['message']
-            subject = "Mysite contact form from {0}".format(name)            
+            name = form.cleaned_data['name']
+            subject = "Mysite message from {0}".format(name)            
             message = form.cleaned_data['message']
             sender = form.cleaned_data['email']
-            messages.success(request, "Message sent succsessfully")
+            messages.success(request, "Сообщение отправлено")
             send_mail(subject, message, sender, recipients)
-            return redirect("contact_url")
+            return redirect("about_url")
         else:
             pass
     else:
