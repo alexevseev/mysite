@@ -9,7 +9,25 @@ from django.conf import settings
 
 from forms import ContactForm
 from authorization.models import MyUser
+from datetime import date
 
+def get_my_age():    
+    birthday = date(1985, 2, 6)
+    now = date.today()
+    age = now.year - birthday.year        
+    if (now.month <= birthday.month and now.day < birthday.day and age > 0):
+        ## day is less than birthday day in current year
+        age -= 1
+    ## get unit for years
+    last_age_digit = age%10
+    if last_age_digit == 1:
+        unit = 'год'
+    elif last_age_digit >= 2 and last_age_digit <= 4:
+        unit = 'года'
+    else:
+        unit = 'лет'    
+    return "{0} {1}".format(age, unit)
+    
 def show_about(request):
     if request.method == "POST":
         copyRequest = request.POST.copy()
@@ -32,9 +50,8 @@ def show_about(request):
         else:
             pass
     else:
-        form = ContactForm()
-    
-    template_context =  {'form':form}
+        form = ContactForm()    
+    template_context =  {'form':form, 'my_age':get_my_age(),}
     return render_to_response('about/form.html', template_context, RequestContext(request))
     
 def show_thankyou(request):
