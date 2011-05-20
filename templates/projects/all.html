@@ -20,21 +20,19 @@
         {% else %}
           {% for project in projects %}    
               <div class="project-item">
-                  <div class="timetag">
-                      <div class="time">{{project.updated|date:"Y-m-d"}}</div>
+                  <div class="time">{{project.updated|date:"Y-m-d"}}</div>
+                  <a class="titlebody" href="{{ project.get_absolute_url }}" title="Посмотреть {{project.title}}">{{project.title}}</a>
+                  <div class="descr">{{project.description|safe|truncatewords:max_description_words}}</div>
+                  <div class="tags-wrap">
+                      <span class="" style="margin-right:5px;">Теги: </span>
                       {% for project_tag in project.tags.all %}
                           {% if checked|getDictItem:project_tag.name %}
-                              <div class="tag-list-wrap"><div class="tag checked">{{ project_tag.name }}</div></div>
+                              <span class="tag checked">{{ project_tag.name }}</span>
                           {% else %}
-                              <div class="tag-list-wrap"><div class="tag">{{ project_tag.name }}</div></div>
+                              <span class="tag">{{ project_tag.name }}</span>
                           {% endif %}
                       {% endfor %}
-                  </div>
-                  <div class="titlebody">
-                      <a href="{{ project.get_absolute_url }}" title="Посмотреть {{project.title}}">{{project.title}}</a>
-                  </div>
-                  <div class="descr">{{project.description|safe|truncatewords:max_description_words}}</div>
-              
+                  </div> 
               </div>
           {% endfor %}        
         {% endif %}

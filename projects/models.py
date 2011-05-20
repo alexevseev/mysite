@@ -18,8 +18,8 @@ class Projects(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     tags=models.ManyToManyField(ProjectTags, related_name="projects")
-    source_url=models.URLField(max_length=250)
-    work_url=models.URLField(max_length=250)
+    source_url=models.URLField(verify_exists=False, max_length=250)
+    work_url=models.URLField(verify_exists=False, max_length=250)
 
     class Meta:
         verbose_name_plural = u"мои проекты"
