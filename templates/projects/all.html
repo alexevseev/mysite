@@ -18,7 +18,7 @@
         {% if projects|length == 0 %}
           Проектов с такими тегами нет
         {% else %}
-          {% for project in projects %}    
+          {% for project in projects reversed %}    
               <div class="project-item">
                   <div class="time">{{project.updated|date:"Y-m-d"}}</div>
                   <a class="titlebody" href="{{ project.get_absolute_url }}" title="Посмотреть {{project.title}}">{{project.title}}</a>

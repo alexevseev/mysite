@@ -8,7 +8,7 @@
 {% if services|length == 0 %}
   Пока сервисов нет.
 {% else %}     
-  {% for service in services %}
+  {% for service in services reversed %}
     <div class="service">
       <div class="srvc_ttl"><a href="{{service.get_absolute_url}}">{{service.title}}</a></div>
       <div class="srvc_field">{{service.short_description}}</div>
