@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.contrib import messages
 from django.core.mail import send_mail
-from django.shortcuts import redirect, render_to_response
+from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.conf import settings
 
@@ -26,7 +28,7 @@ def show_about(request):
             sender = form.cleaned_data['email']
             messages.success(request, "Сообщение отправлено")
             send_mail(subject, message, sender, recipients)
-            return redirect("about_url")
+            return HttpResponseRedirect(reverse('thankyou_url')) # Redirect after POST
         else:
             pass
     else:
@@ -34,3 +36,7 @@ def show_about(request):
     
     template_context =  {'form':form}
     return render_to_response('about/form.html', template_context, RequestContext(request))
+    
+def show_thankyou(request):
+    template_context = {}
+    return render_to_response('about/thankyou.html', template_context, RequestContext(request))
