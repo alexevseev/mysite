@@ -23,9 +23,9 @@
         <a style="text-decoration:none;" href="{{ project.get_absolute_url }}" title="Смотреть далее">&raquo</a>
     </div>
     <div class="tags-wrap">
-        <span class="" style="margin-right:5px;">Теги: </span>
+        <div class="" style="margin-right:5px; float:left;">Теги: </div>
         {% for project_tag in project.tags.all %}
-            <span class="tag">{{ project_tag.name }}</span>
+            <div class="tag">{{ project_tag.name }}</div>
         {% endfor %}
     </div>      
   {% else %}

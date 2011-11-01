@@ -23,12 +23,12 @@
                       <a style="text-decoration:none;" href="{{ project.get_absolute_url }}" title="Смотреть далее">&raquo</a>
                   </div>
                   <div class="tags-wrap">
-                      <span class="" style="margin-right:5px;">Теги: </span>
+                      <div class="" style="margin-right:5px; float:left;">Теги: </div>
                       {% for project_tag in project.tags.all %}
                           {% if checked|getDictItem:project_tag.name %}
-                              <span class="tag checked">{{ project_tag.name }}</span>
+                              <div class="tag checked">{{ project_tag.name }}</div>
                           {% else %}
-                              <span class="tag">{{ project_tag.name }}</span>
+                              <div class="tag">{{ project_tag.name }}</div>
                           {% endif %}
                       {% endfor %}
                   </div>
@@ -41,6 +41,7 @@
 		<ul class="tag_filter_list">
 		{% for tag in tags %}
 			{% if checked|getDictItem:tag.name %}
+                <!-- <li class="tag-filter-wrap"><a style="float:none;" class="tag tag_choice checked" href="{% url projects_url %}">{{ tag.name }}</a></li> -->
 				<li class="tag-filter-wrap"><a class="tag tag_choice checked" href="{% url projects_url %}">{{ tag.name }}</a></li>				
 			{% else %}
 				<li class="tag-filter-wrap"><a class="tag tag_choice" href="?{{ tag.name }}=on">{{ tag.name }}</a></li>
