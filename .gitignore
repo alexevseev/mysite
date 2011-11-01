@@ -15,3 +15,4 @@ local_settings.py
 whoosh/
 haystack/
 site_media/img/myfoto.jpg
+site_media/img/projects/
