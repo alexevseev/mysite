@@ -10,7 +10,7 @@
 {% else %}     
   {% for service in services reversed %}
     <div class="service">
-      <div class="srvc_ttl"><a href="{{service.get_absolute_url}}">{{service.title}}</a></div>
+      <div style="float:none;" class="srvc_ttl dtitle"><a href="{{service.get_absolute_url}}">{{service.title}}</a></div>
       <div class="srvc_field">{{service.short_description}}</div>
       <div class="srvc_field"><a href="{{service.full_description_url}}">Подробнее...</a></div>
     </div>

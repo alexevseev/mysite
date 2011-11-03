@@ -14,9 +14,11 @@
 <div class="project-item-small" style="border-right: 1px solid black;margin-right:10px">
   <div class="article-head">Последний проект:</div>
   {% if project %}
-    <div class="time-small">{{project.updated|date:"Y-m-d"}}</div>
-    <div class="titlebody-small">
-        <a href="{{ project.get_absolute_url }}" title="Посмотреть {{project.title}}">{{project.title}}</a>
+    <div class="dtitle">
+        <div class="time-small">{{project.updated|date:"Y-m-d"}}</div>
+        <div class="titlebody-small">
+            <a href="{{ project.get_absolute_url }}" title="Посмотреть {{project.title}}">{{project.title}}</a>
+        </div>
     </div>
     <div class="descr-small">
         {{project.description|safe|truncatewords:max_description_words}}
@@ -36,9 +38,11 @@
 <div class="project-item-small">
 <div class="article-head">Последний сервис:</div>
 {% if service %}
-  <div class="time-small">{{service.updated|date:"Y-m-d"}}</div>
-  <div class="titlebody-small">
-      <a href="{{ service.get_absolute_url }}" title="запустить {{service.title}}">{{service.title}}</a>
+  <div class="dtitle">
+    <div class="time-small">{{service.updated|date:"Y-m-d"}}</div>
+    <div class="titlebody-small">
+        <a href="{{ service.get_absolute_url }}" title="запустить {{service.title}}">{{service.title}}</a>
+    </div>
   </div>
   <div class="descr-small">{{service.short_description|truncatewords:max_description_words}}</div>
   <div class="srvc_field-small"><a href="{{service.full_description_url}}">Подробнее...</a></div>

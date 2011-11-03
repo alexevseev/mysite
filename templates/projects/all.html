@@ -16,8 +16,10 @@
         {% else %}
           {% for project in projects reversed %}
               <div class="project-item">
-                  <div class="time">{{project.created|date:"Y-m-d"}}</div>
-                  <a class="titlebody" href="{{ project.get_absolute_url }}" title="Посмотреть {{project.title}}">{{project.title}}</a>
+                  <div class="dtitle">
+                      <div class="time">{{project.created|date:"Y-m-d"}}</div>
+                      <a class="titlebody" href="{{ project.get_absolute_url }}" title="Посмотреть {{project.title}}">{{project.title}}</a>
+                  </div>
                   <div class="descr">
                       {{project.description|safe|truncatewords:max_description_words}}
                       <a style="text-decoration:none;" href="{{ project.get_absolute_url }}" title="Смотреть далее">&raquo</a>
@@ -27,10 +29,8 @@
                       {% for project_tag in project.tags.all %}
                           {% if checked|getDictItem:project_tag.name %}
                               <a class="tag checked" href="{% url projects_url %}">{{ project_tag.name }}</a>
-                              <!-- <div class="tag checked">{{ project_tag.name }}</div> -->
                           {% else %}
                               <a class="tag" href="?{{ project_tag.name }}=on">{{ project_tag.name }}</a>
-                              <!-- <div class="tag">{{ project_tag.name }}</div> -->
                           {% endif %}
                       {% endfor %}
                   </div>
