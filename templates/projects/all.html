@@ -41,10 +41,11 @@
 		<ul class="tag_filter_list">
 		{% for tag in tags %}
 			{% if checked|getDictItem:tag.name %}
-                <!-- <li class="tag-filter-wrap"><a style="float:none;" class="tag tag_choice checked" href="{% url projects_url %}">{{ tag.name }}</a></li> -->
-				<li class="tag-filter-wrap"><a class="tag tag_choice checked" href="{% url projects_url %}">{{ tag.name }}</a></li>				
+                <li class="tag-filter-wrap"><a style="float:none;" class="tag tag_choice checked" href="{% url projects_url %}">{{ tag.name }}</a></li> 
+				<!-- <li class="tag-filter-wrap"><a class="tag tag_choice checked" href="{% url projects_url %}">{{ tag.name }}</a></li> -->
 			{% else %}
-				<li class="tag-filter-wrap"><a class="tag tag_choice" href="?{{ tag.name }}=on">{{ tag.name }}</a></li>
+                <li class="tag-filter-wrap"><a style="float:none;" class="tag tag_choice" href="?{{ tag.name }}=on">{{ tag.name }}</a></li> 
+				<!-- <li class="tag-filter-wrap"><a class="tag tag_choice" href="?{{ tag.name }}=on">{{ tag.name }}</a></li> -->
 			{% endif %}
 		{% endfor %}
 		</ul>

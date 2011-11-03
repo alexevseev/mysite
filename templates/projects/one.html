@@ -39,7 +39,7 @@
 <div class="project">
     <div><span class="stb">Дата создания:</span> {{project.created|date:"Y-m-d"}}</div>
     <div><span class="stb">Дата изменения:</span> {{project.updated|date:"Y-m-d"}}</div>    
-    <div class="tags"><span class="stb">Теги:</span>
+    <div class="tags"><div class="stb" style="float:left;">Теги:</div>
         {% for project_tag in project.tags.all %}
             <span class="tag">{{ project_tag.name }}</span>
         {% endfor %}
