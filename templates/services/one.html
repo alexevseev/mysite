@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}{{service.title}}{% endblock %}
-{% block page_title %} {{service.title}} {% endblock %}
+{% block title %}Сервис {{service.title}}{% endblock %}
+{% block page_title %}Сервис  {{service.title}}{% endblock %}
 {% block content %}
-    One
+    <div class="project">
+		{{service.short_description}}.<br />
+		Подробная информация: <a href="{{service.full_description_url}}">{{service.full_description_url}}</a><br />
+	</div>
 {% endblock %}
