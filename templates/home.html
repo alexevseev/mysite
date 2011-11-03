@@ -23,9 +23,9 @@
         <a style="text-decoration:none;" href="{{ project.get_absolute_url }}" title="Смотреть далее">&raquo</a>
     </div>
     <div class="tags-wrap">
-        <div class="" style="margin-right:5px; float:left;">Теги: </div>
+        <div style="margin-right:5px; float:left;">Теги: </div>
         {% for project_tag in project.tags.all %}
-            <div class="tag">{{ project_tag.name }}</div>
+            <a class="tag" href="{% url projects_url %}?{{ project_tag.name }}=on">{{ project_tag.name }}</a>
         {% endfor %}
     </div>      
   {% else %}
